@@ -1,0 +1,57 @@
+CREATE DATABASE  IF NOT EXISTS `student` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `student`;
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
+--
+-- Host: localhost    Database: student
+-- ------------------------------------------------------
+-- Server version	5.6.15
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `captcha`
+--
+
+DROP TABLE IF EXISTS `captcha`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `captcha` (
+  `id` varchar(64) NOT NULL COMMENT '自增ID',
+  `captcha` varchar(20) NOT NULL COMMENT '验证码',
+  `mobile` varchar(20) NOT NULL COMMENT '发送验证码的手机',
+  `type` char(1) NOT NULL DEFAULT '0' COMMENT '类型：0注册，1忘记密码，2绑定',
+  `del_flag` char(1) NOT NULL DEFAULT '0' COMMENT '标记：0正常，1失效',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='验证码记录表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `captcha`
+--
+
+LOCK TABLES `captcha` WRITE;
+/*!40000 ALTER TABLE `captcha` DISABLE KEYS */;
+INSERT INTO `captcha` VALUES ('17f8ab904aaf45719846a2b5bd3561d0','741994','15167101121','0','0','2016-05-23 18:06:17'),('4def7283de0c430eaf5164d06ce66bd5','185732','15167101121','0','1',NULL),('89ecb3050b044fa6b580d0f662a22d31','854440','15167101121','0','1',NULL);
+/*!40000 ALTER TABLE `captcha` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2016-06-01 17:08:41
