@@ -62,7 +62,7 @@
 		<url-pattern>*.html</url-pattern>
 	</filter-mapping>-->
 
-	<!-- SiteMesh -->
+	<!-- SiteMesh 是一个网页布局和修饰的框架，利用它可以将网页的内容和页面结构分离，以达到页面结构共享的目的-->
 	<filter>
 		<filter-name>sitemeshFilter</filter-name>
 		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>

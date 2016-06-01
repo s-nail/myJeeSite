@@ -57,6 +57,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) {
+		System.out.println("==============登录认证=============");
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		
 		int activeSessionSize = getSystemService().getSessionDao().getActiveSessions(false).size();
@@ -118,6 +119,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 				if (StringUtils.isNotBlank(menu.getPermission())){
 					// 添加基于Permission的权限信息
 					for (String permission : StringUtils.split(menu.getPermission(),",")){
+						System.out.println("添加基于Permission的权限信息:"+permission);
 						info.addStringPermission(permission);
 					}
 				}
@@ -126,6 +128,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 			info.addStringPermission("user");
 			// 添加用户角色信息
 			for (Role role : user.getRoleList()){
+				System.out.println("添加用户角色信息:"+role);
 				info.addRole(role.getEnname());
 			}
 			// 更新登录IP和时间
