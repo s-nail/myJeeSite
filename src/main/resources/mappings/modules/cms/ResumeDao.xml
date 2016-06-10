@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.cms.dao.ResumeDao">
+	<sql id="BaseColumns">
+		id As id,
+		name As name,
+		sex As sex,
+		age As age,
+		phone As phone,
+		email As email,
+		resume_no As resumeNo,
+		source As source,
+		resume_url As resumeURL,
+		DATE_FORMAT(send_time,'%Y-%m-%d %H:%i:%s') As sendTime,
+		unread As unread,
+		create_date As
+		createDate,
+		update_date As updateDate,
+		del_flag As delFlag
+	</sql>
+	<insert id="insert" parameterType="java.util.List">
+		Insert Into resume
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			name,
+			sex,
+			age,
+			phone,
+			email,
+			resume_no,
+			source,
+			resume_url,
+			send_time,
+			unread,
+			create_date,
+			update_date,
+			del_flag,
+		</trim>
+		VALUES
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item.id,jdbcType=VARCHAR},
+			#{item.name,jdbcType=VARCHAR},
+			#{item.sex,jdbcType=VARCHAR},
+			#{item.age,jdbcType=VARCHAR},
+			#{item.phone,jdbcType=VARCHAR},
+			#{item.email,jdbcType=VARCHAR},
+			#{item.resumeNo,jdbcType=VARCHAR},
+			#{item.source,jdbcType=VARCHAR},
+			#{item.resumeURL,jdbcType=VARCHAR},
+			#{item.sendTime,jdbcType=TIMESTAMP},
+			#{item.unread,jdbcType=TINYINT},
+			#{item.createDate,jdbcType=TIMESTAMP},
+			#{item.updateDate,jdbcType=TIMESTAMP},
+			#{item.delFlag,jdbcType=CHAR}
+			)
+		</foreach>
+
+	</insert>
+
+	<select id="findList" resultType="com.thinkgem.jeesite.modules.cms.entity.Resume">
+		Select
+		<include refid="BaseColumns" />
+		From resume r
+		where r.del_flag='0'
+	</select>
+
+
+</mapper>
