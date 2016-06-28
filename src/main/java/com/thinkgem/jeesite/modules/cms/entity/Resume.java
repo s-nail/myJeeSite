@@ -107,4 +107,11 @@ public class Resume extends DataEntity<Resume> {
 		this.unread = unread;
 	}
 
+	@Override
+	public String toString() {
+		return "name:" + name + "sex:" + sex + "age:" + age + "phone:" + phone
+				+ "email:" + email + "degree:" + degree + "resumeNo:"
+				+ resumeNo + "source:" + source + "resumeURL:" + resumeURL
+				+ "unread:" + unread;
+	}
 }

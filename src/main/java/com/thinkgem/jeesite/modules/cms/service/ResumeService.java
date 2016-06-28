@@ -25,15 +25,26 @@ public class ResumeService extends CrudService<ResumeDao, Resume> {
 	private ResumeDao resumeDao;
 
 	// @Scheduled(cron = "0 0/1 14,19 * * ?")
-	//@Scheduled(cron = "*/5 * * * * ?")//每隔五秒执行一次
-	@Scheduled(cron = "0 0/1 * * * ?")//每分钟执行一次
+	// @Scheduled(cron = "*/5 * * * * ?")//每隔五秒执行一次
+	//@Scheduled(cron = "0 0/1 * * * ?")
+	// 每分钟执行一次
 	@Transactional(readOnly = false)
 	public void load() throws Exception {
-		/*List<Resume> resumes = ReceiveMailUtils.receive();
-		for (Resume resume : resumes) {			
+
+		long startTime = System.currentTimeMillis();
+
+		List<Resume> resumes = ReceiveMailUtils.receive();
+		for (Resume resume : resumes) {
 			resume.preInsert();
 		}
-		resumeDao.insert(resumes);*/
+		resumeDao.insert(resumes);
+
+		long endTime = System.currentTimeMillis();
+
+		float seconds = (endTime - startTime) / 1000F;
+
+		System.out.println(Float.toString(seconds) + " seconds.");
+		
 		System.out.println("每分钟执行一次");
 	}
 
@@ -55,7 +66,7 @@ public class ResumeService extends CrudService<ResumeDao, Resume> {
 						+ Global.getConfig("file.resume.repository")
 						+ Global.getConfig("file.resume.default.html");
 			}
-			re.setResumeURL(resumeURL);			
+			re.setResumeURL(resumeURL);
 		}
 
 		page.setList(resumes);

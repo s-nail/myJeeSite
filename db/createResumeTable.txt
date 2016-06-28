@@ -1,0 +1,18 @@
+CREATE TABLE `resume` (
+  `id` varchar(60) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `sex` varchar(45) DEFAULT NULL,
+  `age` varchar(45) DEFAULT NULL,
+  `phone` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `resume_no` varchar(45) DEFAULT NULL,
+  `source` varchar(45) DEFAULT NULL COMMENT '（51JOB、智联、猎聘）',
+  `resume_url` varchar(45) DEFAULT NULL,
+  `send_time` datetime DEFAULT NULL,
+  `unread` tinyint(4) DEFAULT '0',
+  `create_date` varchar(45) DEFAULT NULL,
+  `update_date` varchar(45) DEFAULT NULL,
+  `del_flag` char(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+SELECT * FROM jeesite.resume;

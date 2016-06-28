@@ -33,7 +33,7 @@
 			$("#pageNo").val(n);
 		if (s)
 			$("#pageSize").val(s);
-		$("#searchForm").attr("action", "${ctx}/cms/myItemsList");
+		$("#searchForm").attr("action", "${ctx}/cms/resume/list");
 		$("#searchForm").submit();
 		return false;
 	}
@@ -71,19 +71,25 @@
 		<ul class="ul-form">
 			<%-- <li><label>归属公司：</label><sys:treeselect id="itemName" name="itemsEntity.id" value="${itemsEntity.id}" labelName="itemName" labelValue="${itemsEntity.itemName}" 
 				title="商品" url="/sys/office/treeData?type=1" cssClass="input-small" allowClear="true"/></li> --%>
-			<%-- <li><label>商品名称：</label> <form:input path="itemName"
-					htmlEscape="false" maxlength="50" class="input-medium" /></li> --%>
+			<li><label>姓名：</label> <form:input path="name"
+					htmlEscape="false" maxlength="50" class="input-medium" /></li> 
+			<li><label>邮箱：</label> <form:input path="email"
+					htmlEscape="false" maxlength="50" class="input-medium" /></li> 
+			<li><label>电话：</label> <form:input path="phone"
+					htmlEscape="false" maxlength="50" class="input-medium" /></li> 
+			<li><label>来源：</label> <form:input path="source"
+					htmlEscape="false" maxlength="50" class="input-medium" /></li> 		
 			<!-- <li class="clearfix"></li> -->
 			<%-- 	<li><label>归属部门：</label><sys:treeselect id="office" name="office.id" value="${user.office.id}" labelName="office.name" labelValue="${user.office.name}" 
 				title="部门" url="/sys/office/treeData?type=2" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/></li>
 			 --%>
 			 
-		<!-- 	<li class="btns"><input id="btnSubmit" class="btn btn-primary"
-				type="submit" value="查询" onclick="return page();" /> <input
-				id="btnExport" class="btn btn-primary" type="button" value="导出" />
-				<input id="btnImport" class="btn btn-primary" type="button"
-				value="导入" /></li>
-			<li class="clearfix"></li> -->
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary"
+				type="submit" value="查询" onclick="return page();" />
+				 <!-- <input	id="btnExport" class="btn btn-primary" type="button" value="导出" />
+				<input id="btnImport" class="btn btn-primary" type="button"	value="导入" /> -->
+			</li>
+			<li class="clearfix"></li> 
 		</ul>
 	</form:form>
 

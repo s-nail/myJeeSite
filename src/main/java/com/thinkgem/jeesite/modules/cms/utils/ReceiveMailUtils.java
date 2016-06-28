@@ -80,7 +80,8 @@ public class ReceiveMailUtils {
 		 * folder.getMessageCount());
 		 */
 		// Message[] messages = folder.getMessages();
-		Message[] messages = folder.getMessages(35, 36);
+		//Message[] messages = folder.getMessages(35, 36);
+		Message[] messages = folder.getMessages(46, 65);
 		// folder.getm
 		List<Resume> resumesList = parseMessage(messages);
 
@@ -132,31 +133,12 @@ public class ReceiveMailUtils {
 			getMailTextContent(msg, content);
 			// parseContent(content);
 			Document document = Jsoup.parse(content.toString());
-
-			// System.out.println("Document"+document);
-			Elements div = document.select("div.Section1");
-			String ss = null;
+		
+			Elements div = document.getElementsByTag("span");		
+			String ss = "";
 			for (Element e : div) {
-				ss = e.select("p.MsoNormal").select("span").text(); // 读取span标签。text()
-			}
-			/*
-			 * System.out.println("OLD:" + ss); System.out.println("NEW:" +
-			 * ss.replace(" ", ""));
-			 */
-
-			/*
-			 * System.out.println(regex("(?<=姓 名：).+?(?=工作年限)", ss).trim());
-			 * System.out.println(regex("(?<=简历编号：).+?(?=最新登录)", ss.replace(" ",
-			 * "")).trim()); System.out.println(regex("(?<=教育程度：).+?(?=户籍)",
-			 * ss.replace(" ", "")).trim());
-			 * 
-			 * System.out.println(regex("(?<=电话：).+?(?=性别)", ss.replace(" ",
-			 * "")).trim()); System.out.println(regex("(?<=年龄：).+?(?=国籍)",
-			 * ss.replace(" ", "")).trim());
-			 * System.out.println(regex("(?<=性别：).+?(?=电子邮件)", ss.replace(" ",
-			 * "")).trim()); System.out.println(regex("(?<=来自).+?(?=的候选人)",
-			 * ss.replace(" ", "")).trim());
-			 */
+				ss+=e.text();
+			}	
 
 			resume.setName(regex("(?<=姓 名：).+?(?=工作年限)", ss).trim());
 			resume.setPhone(regex("(?<=电话：).+?(?=性别)", ss.replace(" ", ""))
@@ -192,7 +174,6 @@ public class ReceiveMailUtils {
 	 *            要解析的邮件正文
 	 */
 	public static void parseContent(StringBuffer content) {
-		// System.err.println("==============================================================================");
 		Document document = Jsoup.parse(content.toString());
 
 		// System.out.println("Document"+document);
